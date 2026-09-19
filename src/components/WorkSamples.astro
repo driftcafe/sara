@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import { workSamples } from "../data/content";
+import { workSampleImages } from "../data/work-sample-images";
+---
+
+<section id="work" class="border-t border-rule bg-white/40">
+  <div class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <div class="max-w-xl">
+      <p class="font-serif text-lg italic text-ink-soft">Writing samples</p>
+      <h2 class="mt-2 font-serif text-3xl font-medium text-ink sm:text-4xl">
+        Some samples of my writing
+      </h2>
+    </div>
+    <div class="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        workSamples.map((sample) => {
+          const image = sample.image ? workSampleImages[sample.image] : undefined;
+          return (
+            <a href={`/work/${sample.slug}`} class="group flex flex-col">
+              <div class="aspect-[300/175] w-full overflow-hidden border border-rule bg-accent-soft">
+                {image ? (
+                  <Image
+                    src={image}
+                    alt=""
+                    width={300}
+                    height={175}
+                    class={
+                      sample.imageFit === "contain"
+                        ? "h-full w-full object-contain p-4"
+                        : "h-full w-full object-cover"
+                    }
+                  />
+                ) : (
+                  <div class="flex h-full w-full items-center justify-center">
+                    <span class="font-serif text-sm italic text-ink-soft">Sara Peterson</span>
+                  </div>
+                )}
+              </div>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {sample.tags.map((tag) => (
+                  <span class="text-xs font-medium tracking-widest text-accent uppercase">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h3 class="mt-2 font-serif text-lg font-medium text-ink group-hover:text-accent">
+                {sample.title}
+              </h3>
+              <p class="mt-2 leading-relaxed text-ink-soft">{sample.excerpt}</p>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

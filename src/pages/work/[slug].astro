@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { workSamples } from "../../data/content";
+import { workSampleDetailImages } from "../../data/work-sample-detail-images";
+
+export function getStaticPaths() {
+  return workSamples.map((sample) => ({
+    params: { slug: sample.slug },
+    props: { sample },
+  }));
+}
+
+const { sample } = Astro.props;
+const image = sample.detailImage ? workSampleDetailImages[sample.detailImage] : undefined;
+const isExternal = (href: string) => href.startsWith("http");
+---
+
+<Layout
+  title={`${sample.title} | Sara Peterson`}
+  description={sample.excerpt}
+>
+  <div id="top">
+    <Header />
+    <main>
+      <article class="mx-auto max-w-3xl px-6 py-20 sm:py-28">
+        <a href="/#work" class="text-sm font-medium tracking-widest text-accent uppercase">
+          &larr; Back to samples
+        </a>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          {
+            sample.tags.map((tag) => (
+              <span class="text-xs font-medium tracking-widest text-accent uppercase">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+        <h1 class="mt-2 font-serif text-3xl font-medium text-ink sm:text-4xl">
+          {sample.title}
+        </h1>
+
+        {
+          sample.body.map((paragraph) => (
+            <p class="mt-5 leading-relaxed text-ink-soft">{paragraph}</p>
+          ))
+        }
+
+        {
+          sample.links && sample.links.length > 0 && !sample.embedLinks && (
+            <ul class="mt-6 space-y-2">
+              {sample.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="border-b border-accent pb-0.5 text-accent hover:text-ink hover:border-ink"
+                    target={isExternal(link.href) ? "_blank" : undefined}
+                    rel={isExternal(link.href) ? "noopener noreferrer" : undefined}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+
+        {
+          sample.links && sample.links.length > 0 && sample.embedLinks && (
+            <div class="mt-10 space-y-10">
+              {sample.links.map((link) => (
+                <div>
+                  <p class="text-sm font-medium tracking-widest text-accent uppercase">
+                    {link.label}
+                  </p>
+                  <div class="mt-3 border border-rule">
+                    <iframe src={link.href} title={link.label} class="h-[80vh] w-full" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )
+        }
+
+        {
+          sample.embedPdf && (
+            <div class="mt-10 border border-rule">
+              <iframe
+                src={sample.embedPdf}
+                title={`${sample.title} PDF`}
+                class="h-[80vh] w-full"
+              />
+            </div>
+          )
+        }
+
+        {
+          image && (
+            <div class="mt-10 border border-rule bg-accent-soft">
+              <Image
+                src={image}
+                alt=""
+                width={1200}
+                class={
+                  sample.detailImageFit === "contain"
+                    ? "w-full object-contain p-8"
+                    : "w-full object-cover"
+                }
+              />
+            </div>
+          )
+        }
+      </article>
+    </main>
+    <Footer />
+  </div>
+</Layout>

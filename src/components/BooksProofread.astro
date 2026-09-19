@@ -1,0 +1,46 @@
+---
+import { proofreadingIntro, booksProofread } from "../data/content";
+
+const totalBooks = booksProofread.reduce((sum, group) => sum + group.titles.length, 0);
+---
+
+<section id="proofreading" class="border-t border-rule">
+  <div class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <div class="max-w-xl">
+      <p class="font-serif text-lg italic text-ink-soft">{proofreadingIntro.eyebrow}</p>
+      <h2 class="mt-2 font-serif text-3xl font-medium text-ink sm:text-4xl">
+        {proofreadingIntro.heading}
+      </h2>
+      {
+        proofreadingIntro.paragraphs.map((paragraph) => (
+          <p class="mt-4 leading-relaxed text-ink-soft">{paragraph}</p>
+        ))
+      }
+    </div>
+
+    <div class="mt-14">
+      <p class="font-serif text-lg italic text-ink-soft">
+        Books proofread ({totalBooks}+ titles)
+      </p>
+      <div class="mt-8 grid gap-12 sm:grid-cols-2">
+        {
+          booksProofread.map((group) => (
+            <div>
+              <h3 class="border-b border-rule pb-2 font-serif text-xl font-medium text-ink">
+                {group.genre}
+              </h3>
+              <ul class="mt-4 space-y-2">
+                {group.titles.map((book) => (
+                  <li class="leading-relaxed text-ink-soft">
+                    <em class="text-ink font-medium">{book.title}</em>
+                    {" "}by {book.author}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

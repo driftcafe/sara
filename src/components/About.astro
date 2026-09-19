@@ -1,0 +1,30 @@
+---
+import { about, experience } from "../data/content";
+---
+
+<section id="about" class="border-t border-rule bg-white/40">
+  <div class="mx-auto grid max-w-5xl gap-16 px-6 py-20 sm:py-28 lg:grid-cols-2">
+    <div>
+      <p class="font-serif text-lg italic text-ink-soft">{about.eyebrow}</p>
+      <h2 class="mt-2 font-serif text-3xl font-medium text-ink sm:text-4xl">
+        {about.heading}
+      </h2>
+      {
+        about.paragraphs.map((paragraph) => (
+          <p class="mt-4 leading-relaxed text-ink-soft">{paragraph}</p>
+        ))
+      }
+    </div>
+    <div>
+      <p class="font-serif text-lg italic text-ink-soft">{experience.eyebrow}</p>
+      <h2 class="mt-2 font-serif text-3xl font-medium text-ink sm:text-4xl">
+        {experience.heading}
+      </h2>
+      {
+        experience.paragraphs.map((paragraph) => (
+          <p class="mt-4 leading-relaxed text-ink-soft">{paragraph}</p>
+        ))
+      }
+    </div>
+  </div>
+</section>

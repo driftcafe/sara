@@ -1,0 +1,19 @@
+---
+import { hero } from "../data/content";
+---
+
+<section class="mx-auto max-w-3xl px-6 pt-28 pb-20 text-center sm:pt-36 sm:pb-28">
+  <p class="font-serif text-lg italic text-ink-soft">{hero.eyebrow}</p>
+  <h1 class="mt-3 font-serif text-5xl font-medium tracking-tight text-ink sm:text-6xl">
+    {hero.name}
+  </h1>
+  <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+    {hero.tagline}
+  </p>
+  <a
+    href="#contact"
+    class="mt-8 inline-block border-b border-accent pb-1 text-sm font-medium tracking-widest text-accent uppercase hover:text-ink hover:border-ink"
+  >
+    {hero.cta}
+  </a>
+</section>

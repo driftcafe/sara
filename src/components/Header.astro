@@ -1,0 +1,40 @@
+<header class="border-b border-rule">
+  <nav class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-y-4 px-6 py-5">
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
+
+    <a href="#top" class="font-serif text-lg font-medium tracking-tight text-ink">
+      Sara Peterson
+    </a>
+
+    <label for="nav-toggle" class="flex flex-col gap-1.5 sm:hidden peer-checked:hidden">
+      <span class="sr-only">Open menu</span>
+      <span class="block h-0.5 w-6 bg-ink"></span>
+      <span class="block h-0.5 w-6 bg-ink"></span>
+      <span class="block h-0.5 w-6 bg-ink"></span>
+    </label>
+
+    <label
+      for="nav-toggle"
+      class="hidden text-2xl leading-none sm:hidden peer-checked:block"
+    >
+      <span class="sr-only">Close menu</span>
+      <span aria-hidden="true">&times;</span>
+    </label>
+
+    <ul class="hidden gap-x-6 gap-y-2 text-sm font-medium tracking-wide text-ink-soft uppercase sm:flex">
+      <li><a href="#services" class="hover:text-accent">Services</a></li>
+      <li><a href="#work" class="hover:text-accent">Work</a></li>
+      <li><a href="#proofreading" class="hover:text-accent">Proofreading</a></li>
+      <li><a href="#about" class="hover:text-accent">About</a></li>
+      <li><a href="#contact" class="hover:text-accent">Contact</a></li>
+    </ul>
+
+    <ul class="hidden w-full flex-col gap-4 text-sm font-medium tracking-wide text-ink-soft uppercase peer-checked:flex sm:hidden">
+      <li><a href="#services" class="hover:text-accent">Services</a></li>
+      <li><a href="#work" class="hover:text-accent">Work</a></li>
+      <li><a href="#proofreading" class="hover:text-accent">Proofreading</a></li>
+      <li><a href="#about" class="hover:text-accent">About</a></li>
+      <li><a href="#contact" class="hover:text-accent">Contact</a></li>
+    </ul>
+  </nav>
+</header>
